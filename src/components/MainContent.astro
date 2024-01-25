@@ -1,0 +1,16 @@
+---
+import PlaylistCards from "./PlaylistCards.astro";
+---
+
+<div class="z-50 [background-color:#134e4a] relative px-6 pt-4 rounded-md">
+  <h1 class="pt-11 pb-5 text-3xl font-bold">Buenas tardes</h1>
+  <PlaylistCards simple={true} />
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900 -z-[1]"
+  >
+  </div>
+</div>
+<div class="px-6 py-4">
+  <h1 class="text-3xl pb-7 font-bold">Hecho para ti</h1>
+  <PlaylistCards simple={false} />
+</div>

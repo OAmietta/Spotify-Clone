@@ -1,0 +1,39 @@
+---
+import SideMenuItem from "./SideMenuItem.astro";
+import HomeIcon from "../icons/Home.astro";
+import SearchIcon from "../icons/Search.astro";
+import LibraryIcon from "../icons/Library.astro";
+import SideMenuPlaylist from "./SideMenuPlaylist.astro";
+---
+
+<>
+  <section class="px-6 py-5 bg-zinc-900 rounded-md flex-2">
+    <ul class="flex flex-col gap-4">
+      <li>
+        <SideMenuItem href="/">
+          <HomeIcon />
+          Inicio
+        </SideMenuItem>
+      </li>
+      <li>
+        <SideMenuItem href="/">
+          <SearchIcon />
+          Buscar
+        </SideMenuItem>
+      </li>
+    </ul>
+  </section>
+  <section class="py-5 bg-zinc-900 rounded-md flex-1">
+    <ul class="flex flex-col gap-4 pb-2 px-6">
+      <li>
+        <SideMenuItem href="/">
+          <LibraryIcon />
+          Tu Biblioteca
+        </SideMenuItem>
+      </li>
+    </ul>
+    <SideMenuPlaylist />
+  </section>
+</>
+
+<style></style>

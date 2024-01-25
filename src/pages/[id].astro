@@ -1,0 +1,55 @@
+---
+import SongsList from "@/components/SongsList.astro";
+import Layout from "../layouts/Layout.astro";
+import { playlists, songs } from "@/lib/data";
+import { PlayerButton } from "@/components/player/PlayerButtons";
+
+const { id } = Astro.params;
+
+const playlist = playlists.find((playlist) => playlist.id === id);
+const songlist = songs.filter((song) => song.albumId === playlist?.albumId);
+let totalSongsDuration = 0;
+songlist.map((song) => {
+  totalSongsDuration = totalSongsDuration + parseInt(song.duration);
+});
+---
+
+<Layout title="Spotify Clon">
+  <div
+    class={`relative group flex items-center rounded-md bg-opacity-60 transition-all duration-300`}
+  >
+    <picture class="px-4 sm:px-5 pt-4 sm:pt-5">
+      <img
+        class="min-w-24 sm:min-w-48 w-48 rounded-md"
+        src={playlist?.cover}
+        alt={playlist?.title}
+      />
+    </picture>
+    <div class="flex flex-col h-48 justify-center sm:justify-between">
+      <div>
+        <h2 class="text-xs sm:text-base sm:pt-14">Lista</h2>
+        <h1 class="text-base sm:text-4xl font-bold text-zinc-200 truncate">
+          {playlist?.title}
+        </h1>
+      </div>
+      <div class="text-zinc-200 text-xs sm:text-sm">
+        <h3>
+          {playlist?.artists.join(", ")}
+        </h3>
+        <h4 class="pt-2 sm:pt-0">
+          <strong>{`${songlist.length} canciones,`}</strong><span class="">
+            {`${totalSongsDuration}`} min aproximadamente</span
+          >
+        </h4>
+      </div>
+    </div>
+  </div>
+  <div
+    class="py-4 sm:py-5 my-4 sm:my-5 bg-zinc-800/20 h-full overflow-y-hidden"
+  >
+    <div class="px-4 sm:px-5 pb-4 sm:pb-5">
+      <PlayerButton client:load id={id} simple={false} />
+    </div>
+    <SongsList songlist={songlist} />
+  </div>
+</Layout>

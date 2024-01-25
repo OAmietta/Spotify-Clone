@@ -1,0 +1,15 @@
+---
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<button class="w-full">
+  <a class="flex gap-5 opacity-75 hover:opacity-100" href={href}>
+    <slot />
+  </a>
+</button>
+
+<style></style>

@@ -1,0 +1,21 @@
+---
+import { playlists } from "@/lib/data";
+---
+
+{
+  playlists?.map((item) => {
+    return (
+      <article class="flex rounded-md mx-2 px-2 py-2 cursor-pointer hover:bg-zinc-800 transition-all duration-300">
+        <a class="flex items-center gap-4 w-full" href={`/${item.id}`}>
+          <picture class="">
+            <img class="w-12 rounded-md" src={item.cover} alt={item.title} />
+          </picture>
+          <div class="">
+            <h1 class="text-base font-bold text-zinc-200">{item.title}</h1>
+            <p class="text-xs text-zinc-400">{item.artists.join(", ")}</p>
+          </div>
+        </a>
+      </article>
+    );
+  })
+}
