@@ -1,8 +1,9 @@
 ---
-import SongsList from "@/components/SongsList.astro";
+// import SongsList from "@/components/SongsList.astro";
 import Layout from "../layouts/Layout.astro";
 import { playlists, songs } from "@/lib/data";
 import { PlayerButton } from "@/components/player/PlayerButtons";
+import { SongList } from "@/components/SongList";
 
 const { id } = Astro.params;
 
@@ -50,6 +51,7 @@ songlist.map((song) => {
     <div class="px-4 sm:px-5 pb-4 sm:pb-5">
       <PlayerButton client:load id={id} simple={false} />
     </div>
-    <SongsList songlist={songlist} />
+    <!-- <SongsList songlist={songlist} /> -->
+    <SongList songlist={songlist} id={id} client:load />
   </div>
 </Layout>

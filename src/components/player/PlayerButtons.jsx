@@ -12,15 +12,23 @@ export function PlayerButton({ id, simple }) {
     if (!isItemPlaying && isPlaying) {
       setCurrentMusic({
         playlist: id,
-        song: playlistSongs[0].id,
+        song: playlistSongs[
+          currentMusic.song != null && isItemPlaying ? currentMusic.song - 1 : 0
+        ].id,
         songs: playlistSongs,
       });
     } else {
-      setCurrentMusic({
-        playlist: id,
-        song: playlistSongs[0].id,
-        songs: playlistSongs,
-      });
+      if (!isItemPlaying) {
+        setCurrentMusic({
+          playlist: id,
+          song: playlistSongs[
+            currentMusic.song != null && isItemPlaying
+              ? currentMusic.song - 1
+              : 0
+          ].id,
+          songs: playlistSongs,
+        });
+      }
       setIsPlaying(!isPlaying);
     }
   };
