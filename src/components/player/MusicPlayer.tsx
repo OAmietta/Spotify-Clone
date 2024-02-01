@@ -30,7 +30,9 @@ export function MusicPlayer() {
       audioRef.current.src = src;
       audioRef.current.volume = volume;
       audioRef.current.load();
-      audioRef.current.play();
+      if (isPlaying) {
+        audioRef.current.play();
+      }
     }
   }, [currentMusic]);
 
@@ -39,7 +41,7 @@ export function MusicPlayer() {
   }, [volume]);
 
   useEffect(() => {
-    if (isPlaying) {
+    if (isPlaying && currentMusic.songs.length > 0) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
@@ -67,7 +69,10 @@ export function MusicPlayer() {
 
   const handleSongs = (id: string) => {
     if (id == "back") {
-      if (currentMusic.songs[0].id != currentMusic.song) {
+      if (
+        currentMusic.songs.length > 0 &&
+        currentMusic.songs[0].id != currentMusic.song
+      ) {
         setCurrentMusic({
           ...currentMusic,
           song: currentMusic.songs[currentMusic.song - 2].id,
@@ -75,8 +80,9 @@ export function MusicPlayer() {
       }
     } else {
       if (
+        currentMusic.songs.length > 0 &&
         currentMusic.songs[currentMusic.songs.length - 1].id !=
-        currentMusic.song
+          currentMusic.song
       ) {
         setCurrentMusic({
           ...currentMusic,
