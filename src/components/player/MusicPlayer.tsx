@@ -12,8 +12,7 @@ import VolumeInput from "./VolumeInput";
 import { SongControl } from "./SongControl";
 
 export function MusicPlayer() {
-  const { isPlaying, setIsPlaying, currentMusic, setCurrentMusic } =
-    useMusicStore((state: any) => state);
+  const { isPlaying, currentMusic } = useMusicStore((state: any) => state);
   const audioRef = useRef(currentMusic.song);
   const [volume, setVolume] = useState(1);
   const [prevVolume, setPrevVolume] = useState(volume);
@@ -48,10 +47,6 @@ export function MusicPlayer() {
     }
   }, [isPlaying]);
 
-  const handlePlayer = () => {
-    setIsPlaying(!isPlaying);
-  };
-
   const handleSilence = () => {
     if (volume != 0) {
       setPrevVolume(volume);
@@ -65,31 +60,6 @@ export function MusicPlayer() {
     // if (!audioRef.current) return;
     // audioRef.current.volume = volumeValue;
     setVolume(volumeValue);
-  };
-
-  const handleSongs = (id: string) => {
-    if (id == "back") {
-      if (
-        currentMusic.songs.length > 0 &&
-        currentMusic.songs[0].id != currentMusic.song
-      ) {
-        setCurrentMusic({
-          ...currentMusic,
-          song: currentMusic.songs[currentMusic.song - 2].id,
-        });
-      }
-    } else {
-      if (
-        currentMusic.songs.length > 0 &&
-        currentMusic.songs[currentMusic.songs.length - 1].id !=
-          currentMusic.song
-      ) {
-        setCurrentMusic({
-          ...currentMusic,
-          song: currentMusic.songs[currentMusic.song].id,
-        });
-      }
-    }
   };
 
   return (
@@ -118,53 +88,7 @@ export function MusicPlayer() {
         </article>
       </div>
       <div className="min-w-[33%] flex flex-col justify-center items-center">
-        <div className="flex justify-center items-center gap-5">
-          <button
-            onClick={() => handleSongs("back")}
-            className={`${
-              currentMusic.songs.length > 0 &&
-              currentMusic.songs[0].id == currentMusic.song
-                ? "opacity-50"
-                : "opacity-80 cursor-pointer hover:opacity-100 transition duration-300"
-            }`}
-            disabled={
-              currentMusic.songs.length > 0 &&
-              currentMusic.songs[0].id == currentMusic.song
-            }
-          >
-            <Back className={""} />
-          </button>
-
-          <button
-            onClick={() => handlePlayer()}
-            className="bg-white rounded-full p-2 w-fit"
-          >
-            {isPlaying && currentMusic?.song != null ? (
-              <Pause className={""} />
-            ) : (
-              <Play className={""} />
-            )}
-            <audio ref={audioRef} />
-          </button>
-          <button
-            onClick={() => handleSongs("next")}
-            className={`${
-              currentMusic.songs.length > 0 &&
-              currentMusic.songs[currentMusic.songs.length - 1].id ==
-                currentMusic.song
-                ? "opacity-50"
-                : "opacity-80 cursor-pointer hover:opacity-100 transition duration-300"
-            }`}
-            disabled={
-              currentMusic.songs.length > 0 &&
-              currentMusic.songs[currentMusic.songs.length - 1].id ==
-                currentMusic.song
-            }
-          >
-            <Forward className={""} />
-          </button>
-        </div>
-
+        <audio ref={audioRef} />
         <SongControl audio={audioRef} />
       </div>
       <div className="hidden sm:flex flex-row gap-2 sm:gap-4 items-center justify-end min-w-[33%]">

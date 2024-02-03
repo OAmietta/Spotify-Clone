@@ -3,7 +3,20 @@ import { useEffect } from "react";
 
 export const SongList = (props) => {
   const { songlist, id } = props;
-  const { currentMusic } = useMusicStore((state) => state);
+  const { currentMusic, setCurrentMusic, setIsPlaying } = useMusicStore(
+    (state) => state
+  );
+
+  const setSong = (song) => {
+    // if (song.id != currentMusic.song) {
+    //   setCurrentMusic({
+    //     playlist: id,
+    //     song: song.id,
+    //     songs: songlist,
+    //   });
+    //   setIsPlaying(true);
+    // }
+  };
 
   return (
     <table className="text-left w-[95%] m-auto divide-y divide-gray-500/20">
@@ -24,6 +37,7 @@ export const SongList = (props) => {
               <tr
                 key={index}
                 className="border-spacing-0 cursor-pointer text-gray-300 text-sm font-light hover:bg-white/10 overflow-hidden transition duration-300"
+                onClick={() => setSong(song)}
               >
                 <td className="sm:px-4 py-2 w-5">{index + 1}</td>
                 <td className="sm:px-4 py-2 flex gap-3">
