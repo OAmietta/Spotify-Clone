@@ -8,14 +8,14 @@ export const SongList = (props) => {
   );
 
   const setSong = (song) => {
-    // if (song.id != currentMusic.song) {
-    //   setCurrentMusic({
-    //     playlist: id,
-    //     song: song.id,
-    //     songs: songlist,
-    //   });
-    //   setIsPlaying(true);
-    // }
+    if (song.id != currentMusic.song) {
+      setCurrentMusic({
+        playlist: id,
+        song: song.id,
+        songs: songlist,
+      });
+      setIsPlaying(true);
+    }
   };
 
   return (
