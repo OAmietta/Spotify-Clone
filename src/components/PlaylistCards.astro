@@ -39,7 +39,7 @@ const { simple, sideMenu } = Astro.props;
             class:list={[
               "flex relative items-center rounded-md cursor-pointer bg-opacity-60 transition-all duration-300",
               {
-                "flex-1 basis-1/4 min-w-40 sm:min-w-80 m-2 gap-4 bg-zinc-700 group-hover:bg-zinc-600 max-h-fit":
+                "flex-1 basis-1/4 min-w-40 sm:min-w-80 m-2 gap-4 bg-zinc-700 group-hover:bg-zinc-600":
                   simple,
                 "flex-col bg-zinc-800 group-hover:bg-zinc-700": !simple,
               },
@@ -65,7 +65,9 @@ const { simple, sideMenu } = Astro.props;
               />
             </picture>
             <div class:list={["py-3 w-full", { "p-5": !simple }]}>
-              <h1 class="text-base font-bold text-zinc-200">{title}</h1>
+              <h1 class="text-xs sm:text-base font-bold text-zinc-200">
+                {title}
+              </h1>
               {!simple && (
                 <h4 class="text-xs pb-2 text-zinc-400">{artists.join(", ")}</h4>
               )}
