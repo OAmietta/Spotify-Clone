@@ -31,7 +31,6 @@ export const Silenced = ({ className }) => (
     height="16"
     width="16"
     aria-hidden="true"
-    aria-label="Volumen apagado"
     viewBox="0 0 16 16"
     className={className}
   >
@@ -47,8 +46,6 @@ export const Volume = ({ className }) => (
     height="16"
     width="16"
     aria-hidden="true"
-    aria-label="Volumen alto"
-    id="volume-icon"
     viewBox="0 0 16 16"
     className={className}
   >
@@ -64,8 +61,6 @@ export const Forward = ({ className }) => (
     height="16"
     width="16"
     aria-hidden="true"
-    aria-label="Volumen alto"
-    id="volume-icon"
     viewBox="0 0 16 16"
     className={className}
   >
@@ -80,11 +75,23 @@ export const Back = ({ className }) => (
     height="16"
     width="16"
     aria-hidden="true"
-    aria-label="Volumen alto"
-    id="volume-icon"
     viewBox="0 0 16 16"
     className={className}
   >
     <path d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z"></path>
+  </svg>
+);
+
+export const BackHistory = ({ className }) => (
+  <svg
+    fill="currentColor"
+    role="img"
+    height="32"
+    width="32"
+    aria-hidden="true"
+    viewBox="0 0 15 15"
+    className={className}
+  >
+    <path d="M11.03.47a.75.75 0 0 1 0 1.06L4.56 8l6.47 6.47a.75.75 0 1 1-1.06 1.06L2.44 8 9.97.47a.75.75 0 0 1 1.06 0z"></path>
   </svg>
 );

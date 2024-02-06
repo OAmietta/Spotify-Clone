@@ -1,5 +1,5 @@
 import { useMusicStore } from "@/store/musicStore";
-import { Play, Pause } from "@/icons/PlayerIcons";
+import { Play, Pause } from "@/icons/DynamicIcons";
 import { songs } from "@/lib/data";
 
 export function PlayerButton({ id, simple }) {

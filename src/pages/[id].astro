@@ -1,9 +1,9 @@
 ---
-// import SongsList from "@/components/SongsList.astro";
 import Layout from "../layouts/Layout.astro";
 import { playlists, songs } from "@/lib/data";
 import { PlayerButton } from "@/components/player/PlayerButtons";
 import { SongList } from "@/components/SongList";
+import { BackHistory } from "@/icons/DynamicIcons";
 
 const { id } = Astro.params;
 
@@ -16,10 +16,18 @@ songlist.map((song) => {
 ---
 
 <Layout title="Spotify Clon">
+  <div class="h-10 flex m-4">
+    <button onclick="history.back()" class="rounded-full">
+      <BackHistory
+        className={"bg-[rgb(0,0,0,0.5)] rounded-full p-2 opacity-70 hover:opacity-90 duration-300 transition-all"}
+      />
+    </button>
+  </div>
+
   <div
     class={`relative group flex items-center rounded-md bg-opacity-60 transition-all duration-300`}
   >
-    <picture class="px-4 sm:px-5 pt-4 sm:pt-5">
+    <picture class="px-4 sm:px-5">
       <img
         class="min-w-24 sm:min-w-48 w-48 rounded-md"
         src={playlist?.cover}
@@ -55,3 +63,4 @@ songlist.map((song) => {
     <SongList songlist={songlist} id={id} client:load />
   </div>
 </Layout>
+@/icons/DynamicIcons

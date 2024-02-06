@@ -1,13 +1,6 @@
 import { useMusicStore } from "@/store/musicStore";
 import { useEffect, useRef, useState } from "react";
-import {
-  Play,
-  Pause,
-  Silenced,
-  Volume,
-  Forward,
-  Back,
-} from "@/icons/PlayerIcons";
+import { Silenced, Volume } from "@/icons/DynamicIcons";
 import VolumeInput from "./VolumeInput";
 import { SongControl } from "./SongControl";
 

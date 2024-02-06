@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AudioProgressBar from "./AudioProgressBar";
 import { useMusicStore } from "@/store/musicStore";
-import { Back, Forward, Pause, Play } from "@/icons/PlayerIcons";
+import { Back, Forward, Pause, Play } from "@/icons/DynamicIcons";
 
 export function SongControl(audioRef: any) {
   const { audio } = audioRef;
