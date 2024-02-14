@@ -5,7 +5,9 @@ import VolumeInput from "./VolumeInput";
 import { SongControl } from "./SongControl";
 
 export function MusicPlayer() {
-  const { isPlaying, currentMusic } = useMusicStore((state: any) => state);
+  const { isPlaying, currentMusic, setCurrentMusic } = useMusicStore(
+    (state: any) => state
+  );
   const audioRef = useRef(currentMusic.song);
   const [volume, setVolume] = useState(1);
   const [prevVolume, setPrevVolume] = useState(volume);
@@ -55,6 +57,31 @@ export function MusicPlayer() {
     setVolume(volumeValue);
   };
 
+  const handleSongs = (id: string) => {
+    if (id == "back") {
+      if (
+        currentMusic.songs.length > 0 &&
+        currentMusic.songs[0].id != currentMusic.song
+      ) {
+        setCurrentMusic({
+          ...currentMusic,
+          song: currentMusic.songs[currentMusic.song - 2].id,
+        });
+      }
+    } else {
+      if (
+        currentMusic.songs.length > 0 &&
+        currentMusic.songs[currentMusic.songs.length - 1].id !=
+          currentMusic.song
+      ) {
+        setCurrentMusic({
+          ...currentMusic,
+          song: currentMusic.songs[currentMusic.song].id,
+        });
+      }
+    }
+  };
+
   return (
     <div
       className="bg-black min-h-[85px] max-h-[85px] 
@@ -81,8 +108,8 @@ export function MusicPlayer() {
         </article>
       </div>
       <div className="min-w-[33%] flex flex-col justify-center items-center">
-        <audio ref={audioRef} />
-        <SongControl audio={audioRef} />
+        <audio ref={audioRef} onEnded={() => handleSongs("next")} />
+        <SongControl audio={audioRef} handleSongs={handleSongs} />
       </div>
       <div className="hidden sm:flex flex-row gap-2 sm:gap-4 items-center justify-end min-w-[33%]">
         <button className="cursor-pointer" onClick={() => handleSilence()}>

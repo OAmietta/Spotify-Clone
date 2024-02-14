@@ -3,8 +3,13 @@ import AudioProgressBar from "./AudioProgressBar";
 import { useMusicStore } from "@/store/musicStore";
 import { Back, Forward, Pause, Play } from "@/icons/DynamicIcons";
 
-export function SongControl(audioRef: any) {
-  const { audio } = audioRef;
+interface SongControlProps {
+  handleSongs: (id: string) => void;
+  audio: any;
+}
+
+export function SongControl({ audio, handleSongs }: SongControlProps) {
+  // const { audio } = audioRef;
   const [currentTime, setCurrentTime] = useState(0);
   const duration = audio?.current?.duration ?? 0;
   const { isPlaying, setIsPlaying, currentMusic, setCurrentMusic } =
@@ -16,12 +21,6 @@ export function SongControl(audioRef: any) {
       audio.current.removeEventListener("timeupdate", handleTimeUpdate);
     };
   }, []);
-
-  useEffect(() => {
-    if (currentTime == duration) {
-      handleSongs("next");
-    }
-  }, [currentTime]);
 
   const handleTimeUpdate = () => {
     setCurrentTime(audio.current.currentTime);
@@ -35,31 +34,6 @@ export function SongControl(audioRef: any) {
 
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
-
-  function handleSongs(id: string) {
-    if (id == "back") {
-      if (
-        currentMusic.songs.length > 0 &&
-        currentMusic.songs[0].id != currentMusic.song
-      ) {
-        setCurrentMusic({
-          ...currentMusic,
-          song: currentMusic.songs[currentMusic.song - 2].id,
-        });
-      }
-    } else {
-      if (
-        currentMusic.songs.length > 0 &&
-        currentMusic.songs[currentMusic.songs.length - 1].id !=
-          currentMusic.song
-      ) {
-        setCurrentMusic({
-          ...currentMusic,
-          song: currentMusic.songs[currentMusic.song].id,
-        });
-      }
-    }
-  }
 
   const handlePlayer = () => {
     setIsPlaying(!isPlaying);
