@@ -5,7 +5,7 @@ import { Back, Forward, Pause, Play } from "@/icons/DynamicIcons";
 
 interface SongControlProps {
   handleSongs: (id: string) => void;
-  audio: any;
+  audio: React.MutableRefObject<any>;
 }
 
 export function SongControl({ audio, handleSongs }: SongControlProps) {

@@ -1,20 +1,18 @@
-import { useMusicStore } from "@/store/musicStore";
 import { useEffect, useRef, useState } from "react";
+import { useMusicStore } from "@/store/musicStore";
 import { Silenced, Volume } from "@/icons/DynamicIcons";
 import VolumeInput from "./VolumeInput";
 import { SongControl } from "./SongControl";
 
 export function MusicPlayer() {
-  const { isPlaying, currentMusic, setCurrentMusic } = useMusicStore(
-    (state: any) => state
-  );
+  const { isPlaying, currentMusic, setCurrentMusic } = useMusicStore();
   const audioRef = useRef(currentMusic.song);
   const [volume, setVolume] = useState(1);
   const [prevVolume, setPrevVolume] = useState(volume);
   // const back = currentSong
 
   const currentSong = currentMusic?.songs?.find(
-    (song: { id: any }) => song.id == currentMusic.song
+    (song: { id: string }) => song.id == currentMusic.song
   );
 
   useEffect(() => {
